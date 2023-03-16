@@ -1,4 +1,4 @@
-function bookPurchase({name, price, category, amountOfStock}, percentageDiscount, percentageTax, amountOfPurchased) {
+function bookPurchase({name, price, category, amountOfStock}, percentageDiscount, percentageTax, amountOfPurchased, termOfCredit) {
     const amountOfDiscount = (percentageDiscount/100) * price;
     const priceAfterDiscount = price-amountOfDiscount;
     const amountOfTax = price*(percentageTax/100);
@@ -15,6 +15,14 @@ function bookPurchase({name, price, category, amountOfStock}, percentageDiscount
     }
 
     console.log(`Total price = ${totalPrice}`);
+
+    let priceTerm = total/termOfCredit;
+    objectTerm = [];
+
+    for(let index = 0; index < termOfCredit; index++) {
+        objectTerm.push({index: index+1, term: priceTerm});
+    }
+
     return {
         name,
         price,
@@ -24,15 +32,7 @@ function bookPurchase({name, price, category, amountOfStock}, percentageDiscount
         priceAfterTax,
         amountOfStock,
         totalPrice,
+        objectTerm,
     };
 }
 
-
-const book = {
-    "name": "Buku",
-    "category": "technology",
-    "price": 100000,
-    "amountOfStock": 5
-}
-
-console.log(bookPurchase(book, 10,10,3))
