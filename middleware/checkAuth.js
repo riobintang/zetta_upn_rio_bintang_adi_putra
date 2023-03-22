@@ -17,14 +17,18 @@ const checkAuth = (req, res, next) => {
     const username = text.split(":")[0];
     const password = text.split(":")[1];
 
-    if (username == process.env.USERNAME && password == process.env.PASSWORD) {
+    if (username == process.env.user && password == process.env.password) {
+      console.log('success')
       return next();
-    }
-  } catch (error) {
-    res.status(401).json({
+      
+    } 
+    return res.status(401).json({
       status: "fail",
       message: "Access denied",
     });
+   
+  } catch (error) {
+    throw new Error(error);
   }
 };
 

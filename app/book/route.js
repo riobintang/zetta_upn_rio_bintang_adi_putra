@@ -3,6 +3,6 @@ const checkAuth = require('../../middleware/checkAuth');
 const { bookPurchaseHandler } = require('./handler');
 const router = express.Router();
 
-router.post('/', bookPurchaseHandler);
+router.post('/', checkAuth, bookPurchaseHandler);
 
 module.exports = router;

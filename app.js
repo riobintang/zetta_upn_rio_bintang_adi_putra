@@ -4,13 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 const bookRouter = require('./app/book/route');
 const authRouter = require('./app/authentication/route');
 const customErrorHandler = require('./middleware/customErrorHandler');
 var app = express();
-
+require('dotenv').config();
 
 app.use(logger('dev'));
 app.use(express.json());
